@@ -113,7 +113,8 @@ def authenticate():
   user = User.query.filter_by(login=data['login']).first()
   if user and user.check_password(data['password']):
     return jsonify({ 'token': user.password_hash }), 201
-
+  else:
+    return jsonify({'error': 'Failed'}), 401;
 # -------===== API =====-------
 
 @app.route('/get_themes')

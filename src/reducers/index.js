@@ -76,7 +76,7 @@ const editReducer = (state = false, action) => {
 const rootReducer = combineReducers({
   user: userReducer,
   themes: themesReducer,
-  edit: editReducer
+  edit: editReducer,
 });
 
 export default rootReducer;
