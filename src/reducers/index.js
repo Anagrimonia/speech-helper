@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import {
   REGISTER_USER,
   LOGIN_USER,
+  UNLOGIN_USER,
   GET_THEMES,
   ADD_THEME,
   ADD_PHRASE,
   DELETE_THEME,
   DELETE_PHRASE,
+  UNLOGIN_THEMES,
   SET_EDIT
 } from "../actions";
 
@@ -39,10 +41,9 @@ const READYMADE = {
 const userReducer = (state = '', action) => {
   switch (action.type) {
     case REGISTER_USER:
-      return (action.payload) ? action.payload : state;
-
     case LOGIN_USER:
-      return (action.payload) ? action.payload : state;
+    case UNLOGIN_USER:
+      return action.payload;
 
     default:
       return state;
@@ -57,6 +58,9 @@ const themesReducer = (state = READYMADE, action) => {
     case DELETE_THEME:
     case DELETE_PHRASE:
       return action.payload;
+
+    case UNLOGIN_THEMES:
+     return READYMADE;
 
     default:
       return state;

@@ -23,6 +23,19 @@ export const loginUser = (user) => (dispatch) => {
   });
 };
 
+export const UNLOGIN_USER = 'UNLOGIN_USER';
+export const unloginUser = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({ type: UNLOGIN_USER, payload: '' });
+  dispatch(unloginThemes());
+  dispatch(setEdit(false));
+};
+
+export const UNLOGIN_THEMES = 'UNLOGIN_THEMES';
+export const unloginThemes = () => (dispatch) => {
+  dispatch({ type: UNLOGIN_THEMES, payload: '' });
+};
+
 export const GET_THEMES = 'GET_THEMES';
 export const getThemes = () => (dispatch) => {
   request('/get_themes').then((res) => {

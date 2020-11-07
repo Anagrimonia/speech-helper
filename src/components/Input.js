@@ -2,6 +2,9 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
 // -------===== INPUT =====-------
@@ -27,6 +30,10 @@ function Input(props) {
     setText(event.target.value);
   };
 
+  const handleClear = (event) => {
+    setText('');
+  };
+
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <TextField 
@@ -35,6 +42,15 @@ function Input(props) {
         size="small" 
         onChange={handleChange}
         value={text}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              <IconButton size="small" variant="outlined" onClick={handleClear}>
+                <HighlightOffIcon/>
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       />
     </form>
   );

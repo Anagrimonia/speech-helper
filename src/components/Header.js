@@ -4,7 +4,7 @@ import AuthForm from "./AuthForm";
 
 import { connect } from "react-redux";
 import { purple } from '@material-ui/core/colors';
-import { getThemes, setEdit } from "../actions";
+import { getThemes, setEdit, unloginUser } from "../actions";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,7 +14,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const mapDispatchToProps = dispatch => ({
   getThemes: () => dispatch(getThemes()),
-  setEdit: (edit) => dispatch(setEdit(edit))
+  setEdit: (edit) => dispatch(setEdit(edit)),
+  unloginUser: () => dispatch(unloginUser())
 })
 
 const mapStateToProps = state => ({
@@ -46,10 +47,15 @@ function Header(props) {
     } 
   }))();
 
-  const {user, getThemes, edit, setEdit} = props;
+  const {user, getThemes, edit, setEdit, unloginUser} = props;
 
   const handleCheck = (event) => {
     setEdit(!edit);
+  }
+
+  const handleClickUnlogin = (event) => {
+    unloginUser();
+    console.log(edit);
   }
 
   return (
@@ -72,6 +78,9 @@ function Header(props) {
             }
             label="Ред."
           />
+          <Button variant="outlined" color="secondary" onClick={handleClickUnlogin}>
+            ВЫЙТИ ИЗ АККАУНТА
+          </Button>
         </div>
       }
     </div>
